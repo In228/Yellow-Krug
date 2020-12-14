@@ -1,17 +1,25 @@
 import sys
 
-from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel
 from random import randrange
 
 
 class Example(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
-        self.pushButton.clicked.connect(self.paint)
+        self.initUI()
+
+    def initUI(self):
+        self.setFixedSize(600, 600)
+        self.setWindowTitle('Круги')
+        self.btn = QPushButton('Кнопка', self)
+        self.btn.move(250, 20)
+        self.btn.clicked.connect(self.paint)
         self.do_paint = False
+        self.label = QLabel(self)
+        self.label.move(0, 50)
+        self.label.resize(400, 300)
 
     def paintEvent(self, event):
         if self.do_paint:
@@ -29,7 +37,7 @@ class Example(QMainWindow):
 
     def draw_flag(self, qp):
         # Задаем кисть
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randrange(0, 255), randrange(0, 255), randrange(0, 255)))
         a = randrange(10, 500)
         qp.drawEllipse(150, 150, a, a)
 
