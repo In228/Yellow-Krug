@@ -34,7 +34,6 @@ class Example(QMainWindow):
         qp.drawEllipse(150, 150, a, a)
 
 
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Example()
